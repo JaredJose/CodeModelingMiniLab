@@ -51,14 +51,7 @@ public class Building extends JPanel implements ActionListener{
 	
 	/* constructor will setup our main Graphic User Interface - a simple Frame! */
 	public Building(Control ctl, String title) {
-		for(int i = 0; i < 8; i++) {
-			if(i < 4) {
-				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
-			}
-			if(i >= 4) {
-				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
-			}
-		}
+		
 		// used for Control callback
 		this.control = ctl;
 		
@@ -104,10 +97,38 @@ public class Building extends JPanel implements ActionListener{
 		
 		//events
 		super.paintComponent(g); // a necessary call to the parent paint method, required for proper screen refreshing
-		control.paintWalls(g);
+		paintWalls(g);
 		control.paintPersons(g); // repaint all objects in simulation
 		
 	} 
+	
+	public void createWalls() {
+		for(int i = 0; i < 8; i++) {
+			if(i < 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
+			}
+			if(i >= 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
+			}
+		}
+	}
+	
+	public void paintWalls(Graphics g) {
+
+		for (Wall wall : walls) {
+			g.drawImage(wall.getImage(), wall.getX(), wall.getY(), this);
+		}
+		
+		//sets text color
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("Roboto", Font.BOLD, 20));
+		
+		g.drawString("Sprouts", 610, 50);
+		g.drawString("Scripps Medical", 5, 50);
+		g.drawString("Board and Brew", 5, 440);
+		g.drawString("Mr. M's House", 590, 440);
+		
+	}
 		
 	
 }
