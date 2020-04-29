@@ -97,7 +97,7 @@ public class Control {
 		 */
 		public void runSimulation() {
 			//Setup to the Simulation Panel/Frame
-			Building view = new Building(this, title);
+			view = new Building(this, title);
 			
 			//Setup the People
 			model = new ArrayList<Person>();
@@ -154,15 +154,16 @@ public class Control {
 		}
 		
 		//Declares Wall sprites and positions of walls
-
+		//static Rectangle[] r = {vWall1.getBounds(), hWall1.getBounds(), vWall2.getBounds(), hWall2.getBounds(),
+		//		vWall3.getBounds(), hWall3.getBounds(), vWall4.getBounds(), hWall4.getBounds()};
 		
 		public void personToWallCollision(Person p) {
 			
 			Rectangle personRect = new Rectangle(p.x,p.y, p.width, p.height);
-			for(int i = 0; i < view.walls.size();i++)
-			{
-				if(r[i].intersects(personRect))
-					if(walls.get(i).vertical)
+
+			for (Wall wall : view.walls) {
+				if(wall.getBounds().intersects(personRect))
+					if(wall.vertical)
 					{
 						p.vx *= -1;
 					}

@@ -51,7 +51,7 @@ public class Building extends JPanel implements ActionListener{
 	
 	/* constructor will setup our main Graphic User Interface - a simple Frame! */
 	public Building(Control ctl, String title) {
-		
+		createWalls();
 		// used for Control callback
 		this.control = ctl;
 		
@@ -103,6 +103,7 @@ public class Building extends JPanel implements ActionListener{
 	} 
 	
 	public void createWalls() {
+		System.out.println("createWalls");
 		for(int i = 0; i < 8; i++) {
 			if(i < 4) {
 				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
@@ -111,6 +112,7 @@ public class Building extends JPanel implements ActionListener{
 				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
 			}
 		}
+		System.out.println(walls.toString());
 	}
 	
 	public void paintWalls(Graphics g) {
