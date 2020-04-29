@@ -2,8 +2,10 @@ package socialdistancing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,8 +31,34 @@ public class Building extends JPanel implements ActionListener{
 	Timer timer; //Event control	
 	int time = 0; //Track time as the simulation runs
 	
+	/*
+	 Wall vWall1 = new Wall(550, 0, "SocialDistancingImages/wall2.png", true);
+	 Wall vWall2 = new Wall(200, 0, "SocialDistancingImages/wall2.png", true);
+	 Wall vWall3 = new Wall(550, 400, "SocialDistancingImages/wall2.png", true);
+	 Wall vWall4 = new Wall(200, 400, "SocialDistancingImages/wall2.png", true);
+	
+	 Wall hWall1 = new Wall(620, 160, "SocialDistancingImages/wall1.png", false);
+	 Wall hWall2 = new Wall(-25, 160, "SocialDistancingImages/wall1.png", false);
+	 Wall hWall3 = new Wall(620, 400, "SocialDistancingImages/wall1.png", false);
+	 Wall hWall4 = new Wall(-25, 400, "SocialDistancingImages/wall1.png", false);
+	 Wall[] walls = {vWall1, hWall1, vWall2, hWall2, vWall3, hWall3, vWall4, hWall4};
+	 Rectangle[] r = {vWall1.getBounds(), hWall1.getBounds(), vWall2.getBounds(), hWall2.getBounds(),
+			vWall3.getBounds(), hWall3.getBounds(), vWall4.getBounds(), hWall4.getBounds()};
+			*/
+	
+	ArrayList<Wall> walls = new ArrayList<Wall>();
+	int[][] coords = {{550, 0}, {200, 0}, {550, 400}, {200, 400}, {620, 160}, {-25, 160}, {620, 400}, {-25, 400}};
+	
 	/* constructor will setup our main Graphic User Interface - a simple Frame! */
 	public Building(Control ctl, String title) {
+		for(int i = 0; i < 8; i++) {
+			if(i < 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
+			}
+			if(i >= 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
+			}
+		}
 		// used for Control callback
 		this.control = ctl;
 		
